@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap')
+
+@font-face
+    font-family: 'Roboto'
+*
+    font-family: 'Roboto', sans-serif
+    box-sizing: border-box
+*:focus
+    outline: none
+
+
+
+.blockSearch
+    color: #fff
+    max-width: 1050px
+    min-height: 319px
+    margin: auto
+    padding: 30px
+    border-radius: 20px
+    background-color: #204c8b
+    background-position: center center
+    border-color: transparent
+    border-style: solid
+    box-shadow: 0 0 20px 0 rgb(0 0 0 / 50%)
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-around
+    .imageBlock
+        width: 240px
+        margin: 30px 0 30px 0
+        img
+            width: 100%
+    .inputSearchBlock
+        position: relative
+        max-width: 500px
+        margin-bottom: 40px
+        input
+            display: block
+            width: 100%
+            font-size: 20px
+            padding: 10px
+            margin: auto
+        button
+            width: 48px
+            height: 100%
+            padding: 5px
+            background-repeat: no-repeat
+            background-size: 50%
+            cursor: pointer
+            border-top: none
+            border-right: none
+            border-bottom: none
+            border-left: 1px solid gray
+            position: absolute
+            right: 0
+            top: 0
+            background-position: center
+            background-color: transparent
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAuQAAALkB4qdB6AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKfSURBVFiFxdfPi1ZVGMDxz31HCnOq0ZkK00THlxhpIToELdxILkQMRMN1bly1EAlxY/0BswqiFi7KnW3aBSJFKTg2iJY/CsIfEZqjmSJiipKdFvfR9/Jy7zv3bd55PXA4l3vO8zzf85zznPOcLKWkU8mybCE2YhPGsATDuIGr+Blf43BK6U5HZWUlpVRaMQ/78ACpRr2H3WhU6SyrWZkHsixbjc+xJpSfwUmcivZCeGMtxqO+EeLHsCOldL5rD2AAH+FhGP4Nb9eZCd7BHwVv7Kol16bkk1DwLz7FYDfuxBC+KCzLh7UBsLMguLUbwyUgOwoT2T4jABbjbgh9NhvjBYiDoe8vDM0EsD8GX8CCHgEskodpwkSHcYbxT7hrXS+MF5RvCoC/8VwVwHsx6JdeGi8YmA79W8r6G9gcEXmiVtx2X05Gu7mss4FmnwCaZZ0N+dneD4AlZZ0NDMb39TkCeKz3mSqA6fheO0cAa6I9XQVwJb7fnCOA8WhPVQFMPk0AeEsep7cxv8dnwItaN+trVQdRhvMx6OMeAxwIvd/OdBe8q3V7re+R8S1auUGzI0AIHAmB3/HCLI2/JA+/hL0dxxaEFssjIuEoVvxP42PyQy3JQ29eLYAQHsefIXwX75PnjTUMD2AP7mslNsfxfG2Agvu+LCj5PtazaheviD00VZCZLExkstOSdprRtsI6Pq43cEieO36Dm239l0QKJs+Sr8X/KRVZ0UxuHcEEfm0zVKz38SM+wLNt8qu08oETWNhuo/RdUFayLFup9TIakqdv53AxpfSog9zr+A6vBuiGlNKtJwNmE25dREYTl8MTP2Gk1hL0GGJUfsYknMXLfQUIiOXy11aSP2pfqb0HelWyLFsm3xOj+KHvAAGxFF/h8n+GU+2I7XnhZwAAAABJRU5ErkJggg==')
+            &:hover
+                background-color: #e7e7e7
+
+    .resultBlock
+        p.resultTitle
+            display: inline-block
+            margin-bottom: 20px
+            margin-right: 10px
+        span
+            font-weight: bold
+            font-size: 20px
+
+
+
