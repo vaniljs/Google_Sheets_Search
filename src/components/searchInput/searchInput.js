@@ -8,7 +8,7 @@ const SearchInput = (props) => {
         <div className='inputSearchBlock'>
             <input
                 type="text"
-                placeholder="Укажите Username"
+                placeholder="Укажите ваш ID"
                 onInput={username}/>
             <button onClick={searchFrom}></button>
         </div>
