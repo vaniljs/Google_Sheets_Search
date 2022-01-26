@@ -16,21 +16,25 @@ export function App() {
             },
             rangeTickets: {
                 title: 'Диапазон билетов: ',
-                value: 0
+                valueStart: 0,
+                valueEnd: 0
             },
         },
         searched: '',
-        textNotFound: 'Билеты не найдены'
+        textNotFound: 'Билетов для указанного ID в розыгрыше не найдено',
+        textEmptyRange: 'Ваш диапазон будет известен в день розыгрыша'
     });
 
 
 
     function getDataFromGoogleSheets() {
-        const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTsvkNkmpzgOQVqnzymB2q9zEUP-OGDYXFYoSJtujD9nOU4U2lrIs4zhxygjhRHDNmIWgUe8HsABxeS/pub?gid=0&single=true&output=csv'
+        const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBx3Ynd8Oiglp14qUxQvWP2fVwrXVo4ztC-K_3vPPHE_UJk-KRrg9YtErrACrpfiakSA_cn27j712g/pub?gid=1646978202&single=true&output=csv'
+
 
         fetch(url)
             .then(response => response.text())
             .then(data => {
+                console.log(data);
                 const lines = data.split("\n");
                 const result = [];
                 const headers = lines[0].split(",");
@@ -60,29 +64,28 @@ export function App() {
                     searched: false
                 }
             })
-            console.log('state.usernameForSearch ' + state.usernameForSearch);
-            //console.log(state.data);
             const allData = state.data;
             allData.forEach(item => {
                 // 16111823
+                console.log(item);
                 if (item['USERNAME'] === state.usernameForSearch) {
-                    console.log('USERNAME ' + item['USERNAME']);
-                    console.log(state);
+                    // console.log('USERNAME ' + item['USERNAME']);
                     setState(state => {
                         return {
                             ...state,
                             dataSearched: {
                                 username: {
                                     ...state.dataSearched.username,
-                                    value: item[Object.keys(item)[0]]
+                                    value: item[Object.keys(item)[1]]
                                 },
                                 countTickets: {
                                     ...state.dataSearched.countTickets,
-                                    value: item[Object.keys(item)[1]]
+                                    value: item[Object.keys(item)[2]]
                                 },
                                 rangeTickets: {
                                         ...state.dataSearched.rangeTickets,
-                                        value: item[Object.keys(item)[2]]
+                                        valueStart: item[Object.keys(item)[3]],
+                                        valueEnd: item[Object.keys(item)[4]]
                                     }
                             },
                             searched: true
@@ -94,7 +97,7 @@ export function App() {
     }
 
     function saveUsernameForSearch(e) {
-        console.log(e.target.value);
+        //console.log(e.target.value);
         setState(state => {
             return {
                 ...state,
@@ -108,13 +111,20 @@ export function App() {
     if (state.searched === true) {
         result = <div>
             <div className="userName">
-                <p className="resultTitle">{state.dataSearched.username.title} </p><span>{state.dataSearched.username.value}</span>
+                <p className="resultTitle">{state.dataSearched.username.title} </p>
+                <span>{state.dataSearched.username.value}</span>
             </div>
             <div className="countTickets">
-                <p className="resultTitle">{state.dataSearched.countTickets.title} </p><span>{state.dataSearched.countTickets.value}</span>
+                <p className="resultTitle">{state.dataSearched.countTickets.title} </p>
+                <span>{state.dataSearched.countTickets.value}</span>
             </div>
             <div className="rangeTickets">
-                <p className="resultTitle">{state.dataSearched.rangeTickets.title} </p><span>{state.dataSearched.rangeTickets.value}</span>
+                {state.dataSearched.rangeTickets.valueStart.length === 0
+                    ? <p>{state.textEmptyRange}</p>
+                    : <p className="resultTitle">{state.dataSearched.rangeTickets.title}
+                        <span>{state.dataSearched.rangeTickets.valueStart + ' - ' + state.dataSearched.rangeTickets.valueEnd}</span>
+                      </p>
+                }
             </div>
         </div>
     } else if ( state.searched === false ){
@@ -133,16 +143,11 @@ export function App() {
     
     return (
         <div className='blockSearch'>
-            <div className="imageBlock">
-                <img src='./images/tikets.png' />
-            </div>
-            <div>
                 <SearchInput
                     username={saveUsernameForSearch}
                     searchFrom={searchTicket}/>
 
                 <div className="resultBlock">{result}</div>
-            </div>
         </div>
     )
 }

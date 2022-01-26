@@ -5,8 +5,9 @@ import ReactDOM from 'react-dom';
 import { App } from './app/app';
 import './app/app.sass';
 
-
-const appElement = document.getElementById('ticketsSearch');
-
-
-ReactDOM.render(<App />, appElement)
+window.addEventListener('load', () => {
+    const allTargetBlock = document.querySelectorAll('.ticketsSearch');
+    allTargetBlock.forEach(item => {
+        ReactDOM.render(<App />, item)
+    })
+});
